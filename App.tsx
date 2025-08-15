@@ -1,45 +1,28 @@
-import { StatusBar } from 'expo-status-bar'
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import * as React from 'react'
+
+import HomeScreen from './src/screens/HomeScreen'
+import ProfileScreen from './src/screens/ProfileScreen'
+import { RootStackParamList } from './src/types/navigation'
+
+const Stack = createNativeStackNavigator<RootStackParamList>()
 
 export default function App() {
 	return (
-		<View style={styles.container}>
-			<Image
-				source={{
-					uri: 'https://placekitten.com/200/200',
-				}}
-				style={styles.avatar}
-			/>
-			<Text>Меня зовут Егор!</Text>
-			<Text>Мое первое придожение на React Native!</Text>
-			<TouchableOpacity style={styles.button}>
-				<Text style={styles.buttonText}>Написать</Text>
-			</TouchableOpacity>
-			<StatusBar style='auto' />
-		</View>
+		<NavigationContainer>
+			<Stack.Navigator>
+				<Stack.Screen
+					name='Home'
+					component={HomeScreen}
+					options={{ title: 'Главная' }}
+				/>
+				<Stack.Screen
+					name='Profile'
+					component={ProfileScreen}
+					options={{ title: 'Профиль' }}
+				/>
+			</Stack.Navigator>
+		</NavigationContainer>
 	)
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	avatar: {
-		width: 120,
-		height: 120,
-		borderRadius: 60,
-	},
-	button: {
-		backgroundColor: '#007AFF',
-		paddingHorizontal: 20,
-		paddingVertical: 10,
-		borderRadius: 8,
-	},
-	buttonText: {
-		color: '#fff',
-		fontSize: 16,
-	},
-})
