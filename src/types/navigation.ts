@@ -1,6 +1,6 @@
 export type RootStackParamList = {
 	Home: undefined
-	Profile: undefined
+	Profile: { username: string } // передача параметра "имя пользователя" в Profile
 }
 
 export type HomeNav =
@@ -14,3 +14,8 @@ export type ProfileNav =
 		RootStackParamList,
 		'Profile'
 	>
+
+export type ProfileRoute = import('@react-navigation/native').RouteProp<
+	RootStackParamList,
+	'Profile'
+>
